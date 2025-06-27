@@ -63,6 +63,10 @@ async def generate_tweet_endpoint(request: TweetRequest):
     """
     Generate a tweet based on the provided prompt
     """
+    prompt = request.prompt.strip()
+    if not prompt:
+        raise HTTPException(status_code=400, detail="Prompt cannot be empty.")
+
     try:
         logger.info(f"Received tweet generation request: {request.prompt}")
         result = generate_tweet(request.prompt)
