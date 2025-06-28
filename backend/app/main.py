@@ -4,6 +4,8 @@ from fastapi.responses import JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from app.services.tweet_gen import generate_tweet
+from app.routes import tweet_routes  #Import your tweet router
+from app.core.config import settings  #for FRONTEND_URL in CORS
 import os
 import logging
 
@@ -38,6 +40,8 @@ class TweetResponse(BaseModel):
     content: str
     hashtags: list[str]
     full_tweet: str = None
+
+app.include_router(tweet_routes.router, prefix="/tweet")
 
 @app.get("/")
 async def root():
