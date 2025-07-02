@@ -1,6 +1,11 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from app.schemas.tweet import PromptInput, TweetUpdate
-from app.services.twitter_post import generate_tweet_service, post_tweet, update_tweet, get_all_tweets
+from app.services.twitter_post import (
+    generate_tweet_service,
+    post_tweet,
+    update_tweet,
+    get_all_tweets
+)
 from app.db.session import get_session
 from sqlmodel import Session
 
@@ -21,6 +26,27 @@ def edit(tweet_id: int, tweet: TweetUpdate, session: Session = Depends(get_sessi
 @router.get("/all")
 def list_all(session: Session = Depends(get_session)):
     return get_all_tweets(session)
+
+@router.get("/tweets")
+def get_paginated_tweets(
+    limit: int = Query(10, ge=1, le=100),
+    offset: int = Query(0, ge=0),
+    session: Session = Depends(get_session)
+):
+    """
+    Paginated list of tweets: ?limit=10&offset=0
+    """
+    all_tweets = get_all_tweets(session)
+
+    #Paginate manually (if get_all_tweets doesn't support it natively)
+    paginated = all_tweets[offset:offset + limit]
+    
+    return {
+        "tweets": paginated,
+        "limit": limit,
+        "offset": offset,
+        "total": len(all_tweets)
+    }
 
 @router.get("/health")
 def health_check():
