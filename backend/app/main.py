@@ -25,7 +25,7 @@ app.mount(
 # CORS Configuration - Allow all origins for development
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "https://dipayan-saha-yupcha.vercel.app/"],  # Replace for production
+    allow_origins=["http://localhost:3000", "https://dipayan-saha-yupcha.vercel.app/"],  # Replace for production
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
