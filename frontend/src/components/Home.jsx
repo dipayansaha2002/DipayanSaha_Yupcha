@@ -99,7 +99,7 @@ function AISocialAgentSolid() {
 
     try {
       setLoading(true);
-      const response = await fetch(`${BACKEND}/tweet/generate-tweet`, {
+      const response = await fetch(`${BACKEND}/tweet/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ topic: topic().trim() })
@@ -175,8 +175,8 @@ function AISocialAgentSolid() {
             <div class="w-8 h-8 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full"></div>
           </div>
           <div>
-            <h1 class="text-xl font-bold">AI Social Agent</h1>
-            <p class="text-sm opacity-80">Intelligent Social Media Automation</p>
+            <h1 class="text-xl font-bold">AI Tweets</h1>
+            <p class="text-sm opacity-80">Intelligent Social Media Tweet Automation</p>
           </div>
         </div>
         <button
@@ -192,8 +192,8 @@ function AISocialAgentSolid() {
           <span class="text-3xl">🤖</span>
           {/* <img src={logo} alt="Logo" class="w-full h-full object-cover" /> */}
         </div>
-        <h2 class="text-4xl font-bold mb-2">Welcome to AI Social Agent</h2>
-        <p class="text-lg">Generate engaging social media content with AI</p>
+        <h2 class="text-4xl font-bold mb-2">AI Tweets</h2>
+        <p class="text-lg">Generate engaging social media tweets with AI</p>
       </div>
 
       <div class="bg-white/20 p-6 rounded-2xl backdrop-blur-lg mb-6">
