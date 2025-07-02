@@ -62,7 +62,7 @@ async def favicon():
 async def health_check():
     return {"status": "healthy", "service": "AI Social Media Agent"}
 
-@app.post("/generate-tweet", response_model=TweetResponse)
+@app.post("/generate", response_model=TweetResponse)
 async def generate_tweet_endpoint(request: TweetRequest):
     """
     Generate a tweet based on the provided prompt

@@ -31,6 +31,7 @@ def list_all(session: Session = Depends(get_session)):
 def get_paginated_tweets(
     limit: int = Query(10, ge=1, le=100),
     offset: int = Query(0, ge=0),
+    posted: bool = None,
     session: Session = Depends(get_session)
 ):
     """
