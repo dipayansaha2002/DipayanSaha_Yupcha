@@ -6,6 +6,9 @@ from pydantic import BaseModel
 from app.services.tweet_gen import generate_tweet
 from app.routes import tweet_routes  #Import your tweet router
 from app.core.config import settings  #for FRONTEND_URL in CORS
+# from typing import Dict, List
+# from sqlmodel import SQLModel, Field, Column
+# from sqlalchemy.dialects.postgresql import JSON
 import os
 import logging
 
@@ -38,6 +41,7 @@ class TweetRequest(BaseModel):
 # Response model
 class TweetResponse(BaseModel):
     content: str
+   # content: Dict = Field(sa_column=Column(JSON))
     hashtags: list[str]
     full_tweet: str = None
 
