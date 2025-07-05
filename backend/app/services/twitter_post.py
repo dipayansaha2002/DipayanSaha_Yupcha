@@ -7,7 +7,8 @@ from app.core.config import settings
 
 def generate_tweet_service(topic, db):
     tweet = generate_tweet(topic)
-    tweet_entry = Tweet(content=tweet, topic=topic)
+  #  tweet_entry = Tweet(content=tweet, topic=topic)
+    tweet_entry = Tweet(content=tweet["content"], topic=topic)
     db.add(tweet_entry)
     db.commit()
     db.refresh(tweet_entry)
