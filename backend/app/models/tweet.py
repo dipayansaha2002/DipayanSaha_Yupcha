@@ -8,7 +8,8 @@ class Tweet(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
    # content: Dict = Field(sa_column=Column(JSON)) 
    # content : str
-    content: Dict[str, Any] = Field(sa_column=Field(default=None, sa_column_kwargs={"type_": JSON}))
+   # content: Dict[str, Any] = Field(sa_column=Field(default=None, sa_column_kwargs={"type_": JSON}))
+    content: Optional[Dict[str, Any]] = Field(default=None, sa_column=Column(JSON))
     topic: str
     created_at: datetime = Field(default_factory=datetime.utcnow)
     posted: bool = False
